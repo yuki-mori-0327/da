@@ -33,13 +33,46 @@ function reset() {
 
 // 審議ネコを表示する
 function judge(point) {
-    // 0.5秒後に審議ネコ1を表示する
 
-    // 1秒後に審議ネコ2を表示する
+  // 0.5秒後に審議ネコ1を表示する
+  setTimeout(function () {
+    if (point >= 1) {
+      document.querySelector("#judge_1").className = "judge ok cat1";
+    } else {
+      document.querySelector("#judge_1").className = "judge ng cat1";
+    }
+  }, 500);
 
-    // 1.5秒後に審議ネコ3を表示する
+  // 1秒後に審議ネコ2を表示する
+  setTimeout(function () {
+    if (point >= 2) {
+      document.querySelector("#judge_2").className = "judge ok cat2";
+    } else {
+      document.querySelector("#judge_2").className = "judge ng cat2";
+    }
+  }, 1000);
 
-    // 2秒後に結果を表示する
+  // 1.5秒後に審議ネコ3を表示する
+  setTimeout(function () {
+    if (point >= 3) {
+      document.querySelector("#judge_3").className = "judge ok cat3";
+    } else {
+      document.querySelector("#judge_3").className = "judge ng cat3";
+    }
+  }, 1500);
+
+  // 2秒後に結果を表示する
+  setTimeout(function () {
+    if (point === 3) {
+      document.querySelector("#result").textContent = "一級合格";
+    } else if (point === 2) {
+      document.querySelector("#result").textContent = "二級合格";
+    } else if (point === 1) {
+      document.querySelector("#result").textContent = "三級合格";
+    } else {
+      document.querySelector("#result").textContent = "不合格";
+    }
+  }, 2000);
 }
 
 // 点数を審議する
