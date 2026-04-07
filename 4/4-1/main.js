@@ -110,8 +110,28 @@ function check3(message) {
 }
 
 // 文章を解析して返す
+// 文章を解析して返す
 function getSentence(message) {
+  const tokens = tokenizer.tokenize(message);
+  const nouns = []; // 名詞リスト
+  let reading = ""; // 読み
 
+  for (let token of tokens) {
+    reading += token.reading ?? token.surface_form;
+    if (token.pos == "名詞") {
+      nouns.push(
+        {
+          reading: token.reading && token.reading != "*" ?
+            token.reading : token.surface_form,
+        }
+      );
+    }
+  }
+
+  return {
+    reading: reading, // 読み「キョウハヨイテンキデスネ」
+    nouns: nouns, // 名詞の配列 [{reading: "キョウ"}, ...]
+  }
 }
 
 // 単語の読みの補正(ちょっとした違いならOKとする)
